@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Design tokens from DESIGN.md §9. Themes only swap these variables. */
+:root {
+  --background: #ffffff;
+  --surface: #f7f8fa;
+  --border: #e3e6eb;
+  --foreground: #11141a;
+  --muted: #5b6472;
+  --primary: #1f4fd1;
+  --primary-foreground: #ffffff;
+  --primary-soft: #e9eefb;
+  --success: #1b7f4b;
+  --warning: #a15c00;
+  --danger: #b42318;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0b0d12;
+    --surface: #12151c;
+    --border: #232833;
+    --foreground: #e8eaee;
+    --muted: #98a1b0;
+    --primary: #5b82f0;
+    --primary-foreground: #0b0d12;
+    --primary-soft: #1a2233;
+    --success: #3bb27a;
+    --warning: #e0a23a;
+    --danger: #f0685e;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #0b0d12;
+  --surface: #12151c;
+  --border: #232833;
+  --foreground: #e8eaee;
+  --muted: #98a1b0;
+  --primary: #5b82f0;
+  --primary-foreground: #0b0d12;
+  --primary-soft: #1a2233;
+  --success: #3bb27a;
+  --warning: #e0a23a;
+  --danger: #f0685e;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table density: comfortable 40px rows, compact 32px. */
+[data-density="comfortable"] .dt-row > * {
+  height: 40px;
+}
+[data-density="compact"] .dt-row > * {
+  height: 32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
